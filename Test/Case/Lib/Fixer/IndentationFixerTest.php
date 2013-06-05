@@ -13,9 +13,6 @@ class IndentationFixerTest extends CakeCSFixerTest {
 		$contentWrong = $this->getAssert('IndentationWrong.php');
 		$contentFixed = $this->getAssert('IndentationFixed.php');
 		$result = $fixer->fix($contentWrong);
-		echo $contentWrong;
-		echo $result;
-		echo $contentFixed;
 		$this->assertEqual($result, $contentFixed);
 	}
 
