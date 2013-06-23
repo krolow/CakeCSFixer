@@ -27,6 +27,7 @@ class BracketFixer implements FixerInterface {
  */
 	public function fix($content) {
 		$content = $this->_fixesClassBrakets($content);
+		$content = $this->_fixesFunctionBrakets($content);
 		return $content;
 	}
 
@@ -41,6 +42,21 @@ class BracketFixer implements FixerInterface {
 		return preg_replace(
 			'/^([ \t]*)((?:[\w \t]+ )?(class|interface|trait) [\w, \t\\\\]+?)[ \t]*\n{\s*$/m',
 			"$2 {\n",
+			$content
+		);
+	}
+
+/**
+ * Fixes the brackets for methods
+ * 
+ * @param string $content Content that you want to fix
+ * 
+ * @return string content fixed
+ */
+	protected function _fixesFunctionBrakets($content) {
+		return preg_replace(
+			'/^([\s\t].*?)\n.*?{$/m',
+			"$1 {",
 			$content
 		);
 	}

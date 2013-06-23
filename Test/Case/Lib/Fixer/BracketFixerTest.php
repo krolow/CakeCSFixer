@@ -99,12 +99,30 @@ TEST;
 		$this->assertEqual($result, $correct);
 	}
 
-	/*public function testFix() {
-		$fixer = new TrailingSpacesFixer();
-		$contentWrong = $this->getAssert('TrailingSpacesWrong.php');
-		$contentFixed = $this->getAssert('TrailingSpacesFixed.php');
-		$result = $fixer->fix($contentWrong);
-		$this->assertEqual($result, $contentFixed);
-	}*/
+	public function testFixesFunctionBrakets() {
+		$fixer = new BracketFixer();
+
+		$wrong = <<<TEST
+class TheClass {
+
+	public function theFixer()
+	{
+
+	}
+
+}
+TEST;
+		$correct = <<<TEST
+class TheClass {
+
+	public function theFixer() {
+
+	}
+
+}
+TEST;
+		$result = $fixer->fix($wrong);
+		$this->assertEqual($result, $correct);
+	}
 
 }
